@@ -1,0 +1,228 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Электронная библиотека колледжа</title>
+  <link rel="stylesheet" href="{% static 'library/css/style.css' %}">
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="{% url 'library:book_list' %}" aria-label="Инновационный колледж IT и Бизнеса">
+      <span class="brand__mark">IT</span>
+      <span>
+        <strong>Инновационный колледж</strong>
+        <small>IT и Бизнеса</small>
+      </span>
+    </a>
+
+    <nav class="header-nav" aria-label="Навигация по странице">
+      <a href="#popular">Популярное</a>
+      <a href="#catalog">Каталог</a>
+      <a href="#categories">Категории</a>
+      <a href="#benefits">Преимущества</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero reveal" aria-labelledby="hero-title">
+      <div class="hero__content">
+        <p class="eyebrow">Цифровой фонд колледжа</p>
+        <h1 id="hero-title">Электронная библиотека колледжа</h1>
+        <p class="hero__text">
+          Учебные материалы, методические пособия и книги для студентов
+          Инновационного колледжа IT и Бизнеса в одном удобном каталоге.
+        </p>
+
+        <div class="hero__actions" aria-label="Быстрые действия">
+          <a class="primary-link" href="#catalog">Перейти к каталогу</a>
+          <a class="secondary-link" href="#popular">Популярные книги</a>
+        </div>
+      </div>
+
+      <div class="hero__media" aria-hidden="true">
+        <img src="{% static 'library/img/library-banner.png' %}" alt="">
+      </div>
+    </section>
+
+    <section class="stats-panel reveal" aria-label="Статистика библиотеки">
+      <article class="stat-card">
+        <span>200+</span>
+        <p>учебных материалов</p>
+      </article>
+      <article class="stat-card">
+        <span>5</span>
+        <p>ключевых категорий</p>
+      </article>
+      <article class="stat-card">
+        <span>24/7</span>
+        <p>доступ к PDF-файлам</p>
+      </article>
+      <article class="stat-card">
+        <span>Admin</span>
+        <p>добавление книг через Django</p>
+      </article>
+    </section>
+
+    <section class="popular-section reveal" id="popular" aria-labelledby="popular-title">
+      <div class="section-heading section-heading--row">
+        <div>
+          <p class="eyebrow">Рекомендуем</p>
+          <h2 id="popular-title">Популярные книги</h2>
+        </div>
+        <a class="section-link" href="#catalog">Смотреть весь каталог</a>
+      </div>
+
+      <div class="popular-grid" id="popularBooks">
+        {% for book in popular_books %}
+          <article class="popular-card">
+            <span class="popular-card__category">{{ book.get_category_display }}</span>
+            <h3>{{ book.title }}</h3>
+            <p>{{ book.description|default:"Учебный материал из электронной библиотеки колледжа." }}</p>
+            {% if book.pdf_file %}
+              <a href="{{ book.pdf_file.url }}" target="_blank" rel="noopener">Открыть PDF</a>
+            {% else %}
+              <span class="popular-card__empty">PDF не загружен</span>
+            {% endif %}
+          </article>
+        {% empty %}
+          <article class="popular-card">
+            <span class="popular-card__category">Каталог</span>
+            <h3>Добавьте первую книгу</h3>
+            <p>Книги появятся здесь после добавления через Django Admin.</p>
+            <a href="{% url 'admin:library_book_add' %}">Добавить книгу</a>
+          </article>
+        {% endfor %}
+      </div>
+    </section>
+
+    <section class="toolbar reveal" id="catalog" aria-label="Поиск и фильтр книг">
+      <div class="search">
+        <label for="searchInput">Поиск по названию</label>
+        <input
+          type="search"
+          id="searchInput"
+          placeholder="Например: Алгебра"
+          value="{{ search_query }}"
+          autocomplete="off"
+        >
+      </div>
+
+      <div class="catalog-info">
+        <span id="bookCount">{{ book_count_label }}</span>
+      </div>
+    </section>
+
+    <section class="categories reveal" id="categories" aria-label="Категории книг">
+      {% for category in categories %}
+        <button
+          class="category-btn{% if active_category == category.name %} is-active{% endif %}"
+          type="button"
+          data-category="{{ category.name }}"
+        >
+          <span class="category-btn__title">{{ category.title|default:category.name }}</span>
+          <span class="category-btn__meta">{{ category.meta }}</span>
+        </button>
+      {% endfor %}
+    </section>
+
+    <section class="books-section reveal" aria-labelledby="books-title">
+      <div class="section-heading">
+        <p class="eyebrow">Каталог</p>
+        <h2 id="books-title">Список книг</h2>
+      </div>
+
+      <div class="books-grid" id="booksGrid">
+        {% for book in books %}
+          <article
+            class="book-card"
+            data-title="{{ book.title }}"
+            data-category="{{ book.category }}"
+          >
+            <div class="book-card__top">
+              <div>
+                <h3>{{ book.title }}</h3>
+              </div>
+              <span class="book-card__icon" aria-hidden="true">{{ book.first_letter }}</span>
+            </div>
+            <span class="book-card__category">{{ book.get_category_display }}</span>
+            <p class="book-card__description">
+              {{ book.description|default:"Учебный материал из электронной библиотеки колледжа." }}
+            </p>
+            {% if book.pdf_file %}
+              <a class="book-card__action" href="{{ book.pdf_file.url }}" target="_blank" rel="noopener">
+                Открыть PDF
+              </a>
+            {% else %}
+              <span class="book-card__action book-card__action--disabled">PDF не загружен</span>
+            {% endif %}
+          </article>
+        {% endfor %}
+      </div>
+
+      <div class="empty-state" id="emptyState" {% if books %}hidden{% endif %}>
+        <h3>Книги не найдены</h3>
+        <p>Измените запрос, выберите другую категорию или добавьте книги через Django Admin.</p>
+      </div>
+    </section>
+
+    <section class="benefits-section reveal" id="benefits" aria-labelledby="benefits-title">
+      <div class="section-heading">
+        <p class="eyebrow">Почему удобно</p>
+        <h2 id="benefits-title">Преимущества библиотеки</h2>
+      </div>
+
+      <div class="benefits-grid">
+        <article class="benefit-card">
+          <span class="benefit-card__number">01</span>
+          <h3>Управление через админку</h3>
+          <p>Книги, категории, PDF-файлы и обложки можно добавлять в Django Admin без правки кода.</p>
+        </article>
+        <article class="benefit-card">
+          <span class="benefit-card__number">02</span>
+          <h3>Динамический каталог</h3>
+          <p>Frontend получает карточки книг из базы данных, сохраняя прежний дизайн и верстку.</p>
+        </article>
+        <article class="benefit-card">
+          <span class="benefit-card__number">03</span>
+          <h3>Удобно на телефоне</h3>
+          <p>Каталог, поиск и категории адаптированы для просмотра на ноутбуке, планшете и смартфоне.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="about-section reveal" aria-labelledby="about-title">
+      <div class="about-section__content">
+        <p class="eyebrow">О колледже</p>
+        <h2 id="about-title">Инновационный колледж IT и Бизнеса</h2>
+        <p>
+          Электронная библиотека помогает студентам быстро находить учебные материалы
+          по профильным дисциплинам, готовиться к занятиям и работать с источниками
+          в удобном цифровом формате.
+        </p>
+      </div>
+      <div class="about-section__note">
+        <strong>Формат проекта</strong>
+        <span>Django backend, SQLite база данных, загрузка PDF через админку и сохраненный HTML/CSS/JS frontend.</span>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div>
+      <strong>Электронная библиотека колледжа</strong>
+      <p>Инновационный колледж IT и Бизнеса</p>
+    </div>
+    <div class="footer-links" aria-label="Ссылки в подвале сайта">
+      <a href="#popular">Популярное</a>
+      <a href="#catalog">Каталог</a>
+      <a href="#benefits">Преимущества</a>
+      <a href="{% url 'admin:index' %}">Админка</a>
+    </div>
+    <p>© 2026 Материалы загружаются через Django Admin.</p>
+  </footer>
+
+  <script src="{% static 'library/js/script.js' %}"></script>
+</body>
+</html>

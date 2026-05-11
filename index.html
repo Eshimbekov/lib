@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Электронная библиотека колледжа</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="#" aria-label="Инновационный колледж IT и Бизнеса">
+      <span class="brand__mark">IT</span>
+      <span>
+        <strong>Инновационный колледж</strong>
+        <small>IT и Бизнеса</small>
+      </span>
+    </a>
+
+    <nav class="header-nav" aria-label="Навигация по странице">
+      <a href="#popular">Популярное</a>
+      <a href="#catalog">Каталог</a>
+      <a href="#categories">Категории</a>
+      <a href="#benefits">Преимущества</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero reveal" aria-labelledby="hero-title">
+      <div class="hero__content">
+        <p class="eyebrow">Цифровой фонд колледжа</p>
+        <h1 id="hero-title">Электронная библиотека колледжа</h1>
+        <p class="hero__text">
+          Учебные материалы, методические пособия и книги для студентов
+          Инновационного колледжа IT и Бизнеса в одном удобном каталоге.
+        </p>
+
+        <div class="hero__actions" aria-label="Быстрые действия">
+          <a class="primary-link" href="#catalog">Перейти к каталогу</a>
+          <a class="secondary-link" href="#popular">Популярные книги</a>
+        </div>
+      </div>
+
+      <div class="hero__media" aria-hidden="true">
+        <img src="img/library-banner.png" alt="">
+      </div>
+    </section>
+
+    <section class="stats-panel reveal" aria-label="Статистика библиотеки">
+      <article class="stat-card">
+        <span>200+</span>
+        <p>учебных материалов</p>
+      </article>
+      <article class="stat-card">
+        <span>5</span>
+        <p>ключевых категорий</p>
+      </article>
+      <article class="stat-card">
+        <span>24/7</span>
+        <p>доступ к PDF-файлам</p>
+    </section>
+
+    <section class="popular-section reveal" id="popular" aria-labelledby="popular-title">
+      <div class="section-heading section-heading--row">
+        <div>
+          <p class="eyebrow">Рекомендуем</p>
+          <h2 id="popular-title">Популярные книги</h2>
+        </div>
+        <a class="section-link" href="#catalog">Смотреть весь каталог</a>
+      </div>
+
+      <div class="popular-grid" id="popularBooks"></div>
+    </section>
+
+    <section class="toolbar reveal" id="catalog" aria-label="Поиск и фильтр книг">
+      <div class="search">
+        <label for="searchInput">Поиск по названию</label>
+        <input
+          type="search"
+          id="searchInput"
+          placeholder="Например: Алгебра"
+          autocomplete="off"
+        >
+      </div>
+
+      <div class="catalog-info">
+        <span id="bookCount">0 книг</span>
+      </div>
+    </section>
+
+    <section class="categories reveal" id="categories" aria-label="Категории книг">
+      <button class="category-btn is-active" type="button" data-category="Все">
+        <span class="category-btn__title">Все книги</span>
+        <span class="category-btn__meta">Полный каталог</span>
+      </button>
+      <button class="category-btn" type="button" data-category="Математика">
+        <span class="category-btn__title">Математика</span>
+        <span class="category-btn__meta">Алгебра и геометрия</span>
+      </button>
+      <button class="category-btn" type="button" data-category="Русский язык">
+        <span class="category-btn__title">Русский язык</span>
+        <span class="category-btn__meta">Грамотность и речь</span>
+      </button>
+      <button class="category-btn" type="button" data-category="Русская литература">
+        <span class="category-btn__title">Русская литература</span>
+        <span class="category-btn__meta">Классика и современность</span>
+      </button>
+      <button class="category-btn" type="button" data-category="Программирование">
+        <span class="category-btn__title">Програм-
+                                          мирование</span>
+        <span class="category-btn__meta">Web, Python, JS</span>
+      </button>
+      <button class="category-btn" type="button" data-category="Дизайн">
+        <span class="category-btn__title">Дизайн</span>
+        <span class="category-btn__meta">Графика и интерфейсы</span>
+      </button>
+    </section>
+
+    <section class="books-section reveal" aria-labelledby="books-title">
+      <div class="section-heading">
+        <p class="eyebrow">Каталог</p>
+        <h2 id="books-title">Список книг</h2>
+      </div>
+
+      <div class="books-grid" id="booksGrid"></div>
+
+      <div class="empty-state" id="emptyState" hidden>
+        <h3>Книги не найдены</h3>
+        <p>Измените запрос или выберите другую категорию.</p>
+      </div>
+    </section>
+
+    <section class="benefits-section reveal" id="benefits" aria-labelledby="benefits-title">
+      <div class="section-heading">
+        <p class="eyebrow">Почему удобно</p>
+        <h2 id="benefits-title">Преимущества библиотеки</h2>
+      </div>
+
+      <div class="benefits-grid">
+        <article class="benefit-card">
+          <span class="benefit-card__number">01</span>
+          <h3>Быстрый доступ</h3>
+          <p>Материалы открываются напрямую из локальной папки PDF без регистрации и лишних шагов.</p>
+        </article>
+        <article class="benefit-card">
+          <span class="benefit-card__number">02</span>
+          <h3>Простое обновление</h3>
+          <p>Чтобы добавить книгу, достаточно положить PDF в папку и обновить массив в JavaScript.</p>
+        </article>
+        <article class="benefit-card">
+          <span class="benefit-card__number">03</span>
+          <h3>Удобно на телефоне</h3>
+          <p>Каталог, поиск и категории адаптированы для просмотра на ноутбуке, планшете и смартфоне.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="about-section reveal" aria-labelledby="about-title">
+      <div class="about-section__content">
+        <p class="eyebrow">О колледже</p>
+        <h2 id="about-title">Инновационный колледж IT и Бизнеса</h2>
+        <p>
+          Электронная библиотека помогает студентам быстро находить учебные материалы
+          по профильным дисциплинам, готовиться к занятиям и работать с источниками
+          в удобном цифровом формате.
+        </p>
+      </div>
+      <div class="about-section__note">
+        <strong>Формат проекта</strong>
+        <span>Статический сайт на HTML, CSS и JavaScript. Подходит для локального использования и простой публикации.</span>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div>
+      <strong>Электронная библиотека колледжа</strong>
+      <p>Инновационный колледж IT и Бизнеса</p>
+    </div>
+    <div class="footer-links" aria-label="Ссылки в подвале сайта">
+      <a href="#popular">Популярное</a>
+      <a href="#catalog">Каталог</a>
+      <a href="#benefits">Преимущества</a>
+    </div>
+    <p>© 2026 Все материалы доступны локально из папки PDF.</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

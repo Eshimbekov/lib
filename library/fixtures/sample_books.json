@@ -1,0 +1,156 @@
+[
+  {
+    "model": "library.book",
+    "pk": 1,
+    "fields": {
+      "title": "Алгебра и начала анализа",
+      "category": "Математика",
+      "pdf_file": "books/pdfs/sample-book.pdf",
+      "cover": "",
+      "description": "Базовый курс для повторения формул, функций и практических задач.",
+      "is_popular": true,
+      "created_at": "2026-05-03T00:00:00Z",
+      "updated_at": "2026-05-03T00:00:00Z"
+    }
+  },
+  {
+    "model": "library.book",
+    "pk": 2,
+    "fields": {
+      "title": "Геометрия для колледжей",
+      "category": "Математика",
+      "pdf_file": "books/pdfs/sample-book.pdf",
+      "cover": "",
+      "description": "Планиметрия и стереометрия с понятными примерами для занятий.",
+      "is_popular": false,
+      "created_at": "2026-05-03T00:00:00Z",
+      "updated_at": "2026-05-03T00:00:00Z"
+    }
+  },
+  {
+    "model": "library.book",
+    "pk": 3,
+    "fields": {
+      "title": "Русский язык: практический курс",
+      "category": "Русский язык",
+      "pdf_file": "books/pdfs/sample-book.pdf",
+      "cover": "",
+      "description": "Орфография, пунктуация и упражнения для уверенной письменной речи.",
+      "is_popular": true,
+      "created_at": "2026-05-03T00:00:00Z",
+      "updated_at": "2026-05-03T00:00:00Z"
+    }
+  },
+  {
+    "model": "library.book",
+    "pk": 4,
+    "fields": {
+      "title": "Культура речи и деловое письмо",
+      "category": "Русский язык",
+      "pdf_file": "books/pdfs/sample-book.pdf",
+      "cover": "",
+      "description": "Материалы для деловой коммуникации, резюме и официальных писем.",
+      "is_popular": false,
+      "created_at": "2026-05-03T00:00:00Z",
+      "updated_at": "2026-05-03T00:00:00Z"
+    }
+  },
+  {
+    "model": "library.book",
+    "pk": 5,
+    "fields": {
+      "title": "Русская литература XIX века",
+      "category": "Русская литература",
+      "pdf_file": "books/pdfs/sample-book.pdf",
+      "cover": "",
+      "description": "Ключевые авторы, произведения и темы классической литературы.",
+      "is_popular": true,
+      "created_at": "2026-05-03T00:00:00Z",
+      "updated_at": "2026-05-03T00:00:00Z"
+    }
+  },
+  {
+    "model": "library.book",
+    "pk": 6,
+    "fields": {
+      "title": "Современная русская литература",
+      "category": "Русская литература",
+      "pdf_file": "books/pdfs/sample-book.pdf",
+      "cover": "",
+      "description": "Подборка текстов и направлений для анализа современной прозы.",
+      "is_popular": false,
+      "created_at": "2026-05-03T00:00:00Z",
+      "updated_at": "2026-05-03T00:00:00Z"
+    }
+  },
+  {
+    "model": "library.book",
+    "pk": 7,
+    "fields": {
+      "title": "Основы программирования на JavaScript",
+      "category": "Программирование",
+      "pdf_file": "books/pdfs/sample-book.pdf",
+      "cover": "",
+      "description": "Переменные, функции, DOM и первые интерактивные проекты.",
+      "is_popular": true,
+      "created_at": "2026-05-03T00:00:00Z",
+      "updated_at": "2026-05-03T00:00:00Z"
+    }
+  },
+  {
+    "model": "library.book",
+    "pk": 8,
+    "fields": {
+      "title": "Python для начинающих",
+      "category": "Программирование",
+      "pdf_file": "books/pdfs/sample-book.pdf",
+      "cover": "",
+      "description": "Синтаксис Python, условия, циклы, функции и простые задачи.",
+      "is_popular": true,
+      "created_at": "2026-05-03T00:00:00Z",
+      "updated_at": "2026-05-03T00:00:00Z"
+    }
+  },
+  {
+    "model": "library.book",
+    "pk": 9,
+    "fields": {
+      "title": "Веб-разработка: HTML, CSS и JavaScript",
+      "category": "Программирование",
+      "pdf_file": "books/pdfs/sample-book.pdf",
+      "cover": "",
+      "description": "Практическое пособие по созданию современных статических сайтов.",
+      "is_popular": false,
+      "created_at": "2026-05-03T00:00:00Z",
+      "updated_at": "2026-05-03T00:00:00Z"
+    }
+  },
+  {
+    "model": "library.book",
+    "pk": 10,
+    "fields": {
+      "title": "Основы графического дизайна",
+      "category": "Дизайн",
+      "pdf_file": "books/pdfs/sample-book.pdf",
+      "cover": "",
+      "description": "Композиция, цвет, типографика и базовые принципы визуальной культуры.",
+      "is_popular": true,
+      "created_at": "2026-05-03T00:00:00Z",
+      "updated_at": "2026-05-03T00:00:00Z"
+    }
+  },
+  {
+    "model": "library.book",
+    "pk": 11,
+    "fields": {
+      "title": "UX/UI дизайн интерфейсов",
+      "category": "Дизайн",
+      "pdf_file": "books/pdfs/sample-book.pdf",
+      "cover": "",
+      "description": "Пользовательские сценарии, макеты и логика удобных интерфейсов.",
+      "is_popular": false,
+      "created_at": "2026-05-03T00:00:00Z",
+      "updated_at": "2026-05-03T00:00:00Z"
+    }
+  }
+]
